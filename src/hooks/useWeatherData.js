@@ -35,7 +35,7 @@ export default function useWeatherData(replayMode = false) {
   const loadReplay = () => {
     // Oct 15 2024 — verified Open-Meteo archive data, Vadapalani 13.05N 80.21E
     setWeather({
-      rainfall: 8.0,
+      rainfall: 30.0,
       temperature: 27,
       humidity: 89,
       orderDrop: 78,

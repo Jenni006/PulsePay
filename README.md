@@ -275,5 +275,79 @@ cp .env.example .env
 
 ---
 
+## 13. Adversarial Defense & Anti-Spoofing Strategy
+
+### The Threat
+
+A coordinated syndicate uses GPS spoofing apps to fake 
+presence inside disruption zones while at home, triggering 
+mass false payouts. Simple location verification is not enough.
+
+### Our Core Insight — Fraudsters Cannot Spoof Hunger
+
+This defense is specific to quick commerce. Blinkit and Zepto 
+workers must be actively logged into the platform and accepting 
+orders to earn income. A genuine stranded worker has an order 
+history that stops abruptly when disruption hits. A fraudster 
+who was never riding has no order history at all.
+
+GPS says Vadapalani. Order pings say home. FraudGuard catches 
+the contradiction.
+
+### Three-Signal Validation
+
+**Signal 1 — Platform activity trace (primary)**
+Every claim is cross-referenced against the worker's order 
+ping history in the 60 minutes before the disruption event. 
+Genuine workers show active pings that suddenly elongate as 
+roads flood. Fraudsters show zero pre-disruption activity — 
+they logged in only when the weather alert fired. No 
+pre-disruption activity = automatic hold. This signal alone 
+eliminates the majority of spoofing attempts.
+
+**Signal 2 — Accelerometer-GPS contradiction**
+A phone on a scooter in heavy rain produces characteristic 
+vibration signatures. A phone on a table at home does not. 
+GPS spoofing apps cannot simultaneously manipulate 
+accelerometer and gyroscope outputs. Any GPS-accelerometer 
+contradiction flags the claim immediately.
+
+**Signal 3 — Coordinated ring temporal signature**
+Organic disruption claims spread gradually over 30–45 minutes 
+as workers individually reach shelter. Coordinated syndicate 
+claims cluster within minutes of each other — a temporal 
+pattern that Isolation Forest detects as anomalous. The 
+larger the syndicate, the stronger the signal.
+
+### Why This Is Economically Self-Defeating
+
+A syndicate must coordinate GPS spoofing, fake accelerometer 
+patterns, and stagger claim timing simultaneously across 
+multiple devices. The operational cost of defeating three 
+independent signals exceeds the ₹200–400 payout per attempt. 
+Fraud becomes economically irrational before it becomes 
+technically impossible.
+
+### Protecting Honest Workers
+
+FraudGuard never hard-blocks. It holds and re-evaluates.
+
+| Fraud Risk Score | Action |
+|---|---|
+| 0.00–0.25 | Auto-approve |
+| 0.25–0.60 | Approve with enhanced logging |
+| 0.60–0.80 | 10-minute observation hold |
+| 0.80–1.00 | Manual review, worker notified immediately |
+
+**Network drop grace period** — GPS loss during heavy rain 
+triggers a 15-minute hold using last known zone location, 
+not a block. Genuine workers are not penalised for bad weather 
+degrading their signal.
+
+**Trust Score shield** — workers above score 80 receive 
+automatic benefit of the doubt on ambiguous signals. 
+A worker with 18 months of honest history is not blocked 
+by a single anomalous reading.
+
 *Git Set Go — SRM Institute of Science and Technology | Guidewire DEVTrails 2026*  
 *Built for the people who deliver everything, through everything.*

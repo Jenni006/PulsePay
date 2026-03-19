@@ -90,7 +90,6 @@ export default function Onboarding({ onNext }) {
           )}
         </div>
 
-        {/* Platform */}
         <div className="mb-4">
           <label style={{ fontSize: 13, color: '#64748B', display: 'block', marginBottom: 6 }}>
             Platform

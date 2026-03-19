@@ -14,9 +14,11 @@ export default function Dashboard({ worker, onPayout }) {
 
   useEffect(() => {
     if (!weather) return
+    console.log('Weather data:', weather)
     const w = calculateWBGT(weather.temperature, weather.humidity)
     setWbgt(w)
     const result = calculateDCS(weather)
+    console.log('DCS result:', result)
     setDcs(result)
   }, [weather])
 

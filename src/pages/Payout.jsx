@@ -93,8 +93,8 @@ export default function Payout({ worker, onBack }) {
             ['Date', 'October 15, 2024'],
             ['Detected at', '8:00 PM'],
             ['Paid by', '8:05 PM'],
-            ['DCS Score', '0.73'],
-            ['Triggers', 'Rainfall 8.0mm/hr + Order collapse –78%'],
+            ['DCS Score', '0.65'],
+            ['Triggers', 'Rainfall 30.0mm/hr + Order collapse –78%'],
             ['Source', 'Open-Meteo Archive API'],
           ].map(([key, val]) => (
             <div

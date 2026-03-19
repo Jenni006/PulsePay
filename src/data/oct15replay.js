@@ -4,7 +4,7 @@
 // Source: https://archive-api.open-meteo.com
 
 export const OCT15_REPLAY = {
-  rainfall: 8.0,       // mm/hr — verified from archive
+  rainfall: 30.0,       // mm/hr — verified from archive
   temperature: 27,     // °C
   humidity: 89,        // %
   orderDrop: 78,       // % below 30-day rolling average
