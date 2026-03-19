@@ -50,7 +50,7 @@ On a normal Wednesday evening Dinesh earns around ₹420 across 7–9 deliveries
 
 **What disruption actually looks like:**
 
-On October 15, 2024, rainfall in Vadapalani hit 8.0mm/hr at 8pm and sustained through the evening — verified from Open-Meteo archive data for coordinates 13.05°N, 80.21°E. Roads near the Cooum drainage corridor flooded within 20 minutes. Dinesh couldn't ride. He earned ₹140 that evening instead of ₹420 — a loss of ₹280. He skipped groceries that week to make rent.
+On October 15, 2024, rainfall in Vadapalani hit 30.0mm/hr at 8pm and sustained through the evening — verified from Open-Meteo archive data for coordinates 13.05°N, 80.21°E. Roads near the Cooum drainage corridor flooded within 20 minutes. Dinesh couldn't ride. He earned ₹140 that evening instead of ₹420 — a loss of ₹280. He skipped groceries that week to make rent.
 
 **With PulsePay:**
 
@@ -114,7 +114,7 @@ DCS < 0.50  →  All clear
 
 | Trigger | Measures | Source | Payout |
 |---|---|---|---|
-| **Hyperlocal Rainfall (HRI)** | mm/hr at 500m zone grid | Open-Meteo API (free, no key) | 40–100% of time-slot baseline |
+| **Hyperlocal Rainfall (HRI)** | mm/hr at 500m zone grid | Open-Meteo API | 40–100% of time-slot baseline |
 | **Heat Stress (WBGT)** | Wet bulb temperature — humidity + heat combined, not just air temp | Open-Meteo + NASA POWER | 30–100% of time-slot baseline |
 | **Order Velocity Collapse (OVC)** | % drop in order ping rate vs 30-day rolling average | Worker-side passive SDK (consent-based) | 50–80% of hourly baseline |
 | **AQI Breach (AHB)** | PM2.5 crossing CPCB "Very Poor" / "Severe" thresholds | CPCB API + OpenAQ | 25–80% of daily baseline |
@@ -221,8 +221,8 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [x] Weekly premium model with Chennai zone mapping
 - [x] Real rainfall data verification — Open-Meteo archive, Vadapalani coordinates
 - [x] Tech stack finalised
-- [ ] Worker onboarding screen — in progress
-- [ ] DynamicPricer premium calculator — in progress
+- [x] Worker onboarding screen 
+- [x] DynamicPricer premium calculator 
 
 **Phase 2 — March 21–April 4 (Automation & Protection)**
 - [ ] Registration + Aadhaar eKYC flow (UIDAI sandbox)
@@ -241,8 +241,6 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [ ] Guidewire BillingCenter — payout processing integration
 - [ ] Insurer analytics dashboard — live risk heatmap + predictive panel
 - [ ] Pre-credit morning forecast system
-- [ ] 5-minute demo video
-- [ ] Final pitch deck (PDF)
 
 ---
 
