@@ -244,36 +244,7 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 
 ---
 
-## 12. References
-
-1. NITI Aayog (2022). *India's Booming Gig and Platform Economy.* https://www.niti.gov.in/sites/default/files/2022-06/25th_June_Final_Report_27062022.pdf
-2. ILO (2021). *World Employment and Social Outlook: The Role of Digital Labour Platforms in Transforming the World of Work.* https://www.ilo.org/publications/flagship-reports/role-digital-labour-platforms-transforming-world-work
-3. Open-Meteo Archive API (2024–25). *Hourly Precipitation — Vadapalani, Chennai (13.05°N, 80.21°E).* https://archive-api.open-meteo.com
-4. Central Pollution Control Board (2024). *National Real-Time Air Quality Index.* https://cpcb.nic.in
-5. OpenAQ (2024). *Open Air Quality Data Platform.* https://openaq.org
-6. Open-Meteo (2024). *Free Weather API Documentation.* https://open-meteo.com/en/docs
-7. Indian Express (2024). *Blinkit delivery agent reveals he earns ₹763 after delivering 28 orders in 15 hours.* https://indianexpress.com/article/trending/trending-in-india/blinkit-delivery-agent-reveals-he-earns-rs-763-after-delivering-28-orders-in-15-hours-video-sparks-backlash-10420867/
-
----
-
-## Quick Start
-
-```bash
-git clone https://github.com/Jenni006/pulsepay
-cd pulsepay
-
-cd frontend && npm install && npm run dev
-cd ../backend && npm install && npm run dev
-cd ../ml-service && pip install -r requirements.txt && uvicorn main:app --reload
-
-cp .env.example .env
-# Open-Meteo and RSS feeds need no API key
-# Add: OPENAQ_KEY, RAZORPAY_TEST_KEY, UIDAI_SANDBOX_KEY
-```
-
----
-
-## 13. Adversarial Defense & Anti-Spoofing Strategy
+## 12. Adversarial Defense & Anti-Spoofing Strategy
 
 ### The Threat
 
@@ -346,6 +317,35 @@ degrading their signal.
 automatic benefit of the doubt on ambiguous signals. 
 A worker with 18 months of honest history is not blocked 
 by a single anomalous reading.
+
+## 13. References
+
+1. NITI Aayog (2022). *India's Booming Gig and Platform Economy.* https://www.niti.gov.in/sites/default/files/2022-06/25th_June_Final_Report_27062022.pdf
+2. ILO (2021). *World Employment and Social Outlook: The Role of Digital Labour Platforms in Transforming the World of Work.* https://www.ilo.org/publications/flagship-reports/role-digital-labour-platforms-transforming-world-work
+3. Open-Meteo Archive API (2024–25). *Hourly Precipitation — Vadapalani, Chennai (13.05°N, 80.21°E).* https://archive-api.open-meteo.com
+4. Central Pollution Control Board (2024). *National Real-Time Air Quality Index.* https://cpcb.nic.in
+5. OpenAQ (2024). *Open Air Quality Data Platform.* https://openaq.org
+6. Open-Meteo (2024). *Free Weather API Documentation.* https://open-meteo.com/en/docs
+7. Indian Express (2024). *Blinkit delivery agent reveals he earns ₹763 after delivering 28 orders in 15 hours.* https://indianexpress.com/article/trending/trending-in-india/blinkit-delivery-agent-reveals-he-earns-rs-763-after-delivering-28-orders-in-15-hours-video-sparks-backlash-10420867/
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/Jenni006/pulsepay
+cd pulsepay
+
+cd frontend && npm install && npm run dev
+cd ../backend && npm install && npm run dev
+cd ../ml-service && pip install -r requirements.txt && uvicorn main:app --reload
+
+cp .env.example .env
+# Open-Meteo and RSS feeds need no API key
+# Add: OPENAQ_KEY, RAZORPAY_TEST_KEY, UIDAI_SANDBOX_KEY
+```
+
+---
 
 *Git Set Go — SRM Institute of Science and Technology | Guidewire DEVTrails 2026*  
 *Built for the people who deliver everything, through everything.*
