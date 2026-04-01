@@ -260,39 +260,6 @@ export default function Payout({ worker, onBack }) {
             ))}
           </div>
 
-          {/* Guidewire badge */}
-          <div style={{
-            background: 'white', borderRadius: 14,
-            padding: '12px 16px',
-            border: '1px solid #E2E8F0',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
-            display: 'flex', alignItems: 'center', gap: 12,
-            animation: 'fadeUp 0.4s ease-out 0.15s both',
-          }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-              background: '#EFF6FF',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 16,
-            }}>⚙️</div>
-            <div>
-              <p style={{
-                fontSize: 11, fontWeight: 700, color: '#185FA5',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                margin: '0 0 2px', textTransform: 'uppercase', letterSpacing: '0.04em',
-              }}>Guidewire Autopilot</p>
-              <p style={{ fontSize: 12, color: '#64748B', margin: 0 }}>
-                Autopilot → ClaimCenter → BillingCenter
-              </p>
-            </div>
-            <div style={{
-              marginLeft: 'auto', flexShrink: 0,
-              width: 8, height: 8, borderRadius: '50%',
-              background: '#1D9E75',
-              boxShadow: '0 0 0 3px rgba(29,158,117,0.2)',
-            }} />
-          </div>
-
           {/* Income bar */}
           <div style={{
             background: 'white', borderRadius: 14,
@@ -336,7 +303,7 @@ export default function Payout({ worker, onBack }) {
                 <p style={{
                   fontSize: 13, fontWeight: 700, color: '#1D9E75',
                   fontFamily: "'Plus Jakarta Sans', sans-serif", margin: 0,
-                }}>🏅 Trust Score Unlocked</p>
+                }}>Trust Score Unlocked</p>
                 <span style={{
                   fontSize: 13, fontWeight: 800, color: '#1D9E75',
                   fontFamily: "'Plus Jakarta Sans', sans-serif",

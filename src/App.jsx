@@ -1,43 +1,101 @@
-import { useState } from 'react'
-import Onboarding from './pages/Onboarding'
-import Dashboard from './pages/Dashboard'
-import Payout from './pages/Payout'
+import { useState, useCallback } from "react"
+
+import BottomNav from "./components/BottomNav"
+import Onboarding from "./pages/Onboarding"
+import Dashboard from "./pages/Dashboard"
+import Policy from "./pages/Policy"
+import Claims from "./pages/Claims"
+import Alerts from "./pages/Alerts"
+import Payout from "./pages/Payout"
 
 export default function App() {
-  const [screen, setScreen]         = useState('onboarding')
+  const [screen, setScreen] = useState("onboarding")
   const [workerData, setWorkerData] = useState(null)
-  const [direction, setDirection]   = useState('forward')
+  const [direction, setDirection] = useState("forward")
+  const [tab, setTab] = useState("home")
 
-  const goToDashboard = (data) => {
-    setDirection('forward')
+  // Navigation handlers (memoized for performance)
+  const goToDashboard = useCallback((data) => {
+    setDirection("forward")
     setWorkerData(data)
-    setScreen('dashboard')
+    setScreen("dashboard")
+  }, [])
+
+  const goToPayout = useCallback(() => {
+    setDirection("forward")
+    setScreen("payout")
+  }, [])
+
+  const goBack = useCallback(() => {
+    setDirection("back")
+    setScreen("dashboard")
+  }, [])
+
+  // Tab renderer (clean & scalable)
+  const renderTab = () => {
+    switch (tab) {
+      case "home":
+        return (
+          <Dashboard
+            worker={workerData}
+            onPayout={goToPayout}
+          />
+        )
+      case "policy":
+        return <Policy worker={workerData} />
+      case "claims":
+        return <Claims />
+      case "alerts":
+        return <Alerts preCredit={workerData?.preCredit} />
+      default:
+        return null
+    }
   }
 
-  const goToPayout = () => {
-    setDirection('forward')
-    setScreen('payout')
-  }
+  // Screen renderer (main navigation)
+  const renderScreen = () => {
+    switch (screen) {
+      case "onboarding":
+        return <Onboarding onNext={goToDashboard} />
 
-  const goBack = () => {
-    setDirection('back')
-    setScreen('dashboard')
+      case "dashboard":
+        return (
+          <>
+            {renderTab()}
+            <BottomNav active={tab} onChange={setTab} />
+          </>
+        )
+
+      case "payout":
+        return (
+          <Payout
+            worker={workerData}
+            onBack={goBack}
+          />
+        )
+
+      default:
+        return null
+    }
   }
 
   return (
     <>
+      {/* Global Styles */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap');
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
 
         body {
           background: #E2E8F0;
-          min-height: 100vh;
           display: flex;
           justify-content: center;
           font-family: 'DM Sans', sans-serif;
-          -webkit-font-smoothing: antialiased;
         }
 
         #root {
@@ -46,45 +104,39 @@ export default function App() {
           justify-content: center;
         }
 
-        @keyframes slide-in-forward {
+        @keyframes slide-forward {
           from { opacity: 0; transform: translateX(24px); }
-          to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slide-in-back {
-          from { opacity: 0; transform: translateX(-24px); }
-          to   { opacity: 1; transform: translateX(0); }
-        }
-        .screen-forward {
-          animation: slide-in-forward 0.3s ease-out both;
-        }
-        .screen-back {
-          animation: slide-in-back 0.3s ease-out both;
+          to { opacity: 1; transform: translateX(0); }
         }
 
-        ::-webkit-scrollbar { width: 0px; }
+        @keyframes slide-back {
+          from { opacity: 0; transform: translateX(-24px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+
+        .forward { animation: slide-forward 0.3s ease-out; }
+        .back { animation: slide-back 0.3s ease-out; }
+
+        ::-webkit-scrollbar { display: none; }
       `}</style>
 
-      <div style={{
-        width: '100%',
-        maxWidth: 390,
-        minHeight: '100vh',
-        background: '#F8F9FB',
-        position: 'relative',
-        boxShadow: '0 0 40px rgba(0,0,0,0.12)',
-      }}>
+      {/* App Container */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 390,
+          minHeight: "100vh",
+          background: "#F8F9FB",
+          position: "relative",
+          boxShadow: "0 0 40px rgba(0,0,0,0.12)",
+          overflow: "hidden",
+        }}
+      >
         <div
           key={screen}
-          className={direction === 'forward' ? 'screen-forward' : 'screen-back'}
+          className={direction === "forward" ? "forward" : "back"}
         >
-          {screen === 'onboarding' && (
-            <Onboarding onNext={goToDashboard} />
-          )}
-          {screen === 'dashboard' && (
-            <Dashboard worker={workerData} onPayout={goToPayout} />
-          )}
-          {screen === 'payout' && (
-            <Payout worker={workerData} onBack={goBack} />
-          )}
+          {renderScreen()}
         </div>
       </div>
     </>
