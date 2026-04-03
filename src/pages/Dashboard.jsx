@@ -23,7 +23,7 @@ export default function Dashboard({ worker, onPayout }) {
   const handleSimulate = () => {
     setSimulating(true)
     loadReplay()
-    setTimeout(() => onPayout(), 3500)
+    setTimeout(() => onPayout(), 20000)
   }
 
   const hour = new Date().getHours()
