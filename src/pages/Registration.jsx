@@ -139,24 +139,122 @@ export default function Registration({ onComplete }) {
             <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.4 }}>
               <GlassStack bright />
             </motion.div>
-            <motion.div variants={childVariants} style={{ textAlign: "center" }}>
+            <motion.div variants={childVariants} style={{ textAlign: "center", width: "100%" }}>
               <p style={{ opacity: 0.5, marginBottom: 30 }}>We pay before disruption stops you.</p>
-              <button onClick={() => setScreen("slide0")} style={{ width: "100%", padding: 20, borderRadius: 20, background: `linear-gradient(135deg, ${COLORS.electricBlue}, ${COLORS.aqua})`, border: "none", color: "#fff", fontSize: 18, fontWeight: 800, boxShadow: `0 10px 30px rgba(46,230,201,0.2)` }}>Get Protected →</button>
+              
+              <motion.button 
+                onClick={() => setScreen("slide0")} 
+                // --- ANIMATIONS ---
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                animate={{ 
+                  // Pulses the glow to make the button look "active"
+                  boxShadow: [
+                    `0 10px 30px rgba(46,230,201,0.2)`,
+                    `0 10px 40px rgba(46,230,201,0.4)`,
+                    `0 10px 30px rgba(46,230,201,0.2)`
+                  ]
+                }}
+                transition={{ 
+                  boxShadow: { 
+                    repeat: Infinity, 
+                    duration: 3, 
+                    ease: "easeInOut" 
+                  } 
+                }}
+                // ------------------
+                style={{ 
+                  width: "100%", 
+                  padding: "20px", 
+                  borderRadius: "22px", // Slightly deeper curve to match your theme
+                  background: `linear-gradient(135deg, ${COLORS.electricBlue}, ${COLORS.aqua})`, 
+                  border: "none", 
+                  color: "#fff", 
+                  fontSize: "18px", 
+                  fontWeight: "800",
+                  cursor: "pointer",
+                  display: "block"
+                }}
+              >
+                Get Protected
+              </motion.button>
             </motion.div>
           </motion.div>
         )}
 
         {/* PANELS 2-4: ONBOARDING SLIDES */}
         {slideData.map((slide, i) => screen === `slide${i}` && (
-          <motion.div key={`slide${i}`} variants={panelVariants} initial="initial" animate="animate" exit="exit" style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "60px 30px" }}>
-            <div style={{ textAlign: "right" }}><button onClick={() => setScreen("phone")} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)" }}>Skip</button></div>
+          <motion.div 
+            key={`slide${i}`} 
+            variants={panelVariants} 
+            initial="initial" 
+            animate="animate" 
+            exit="exit" 
+            style={{ 
+              height: "100%", 
+              minHeight: "100vh", // Ensures full screen height
+              display: "flex", 
+              flexDirection: "column", 
+              padding: "60px 30px" 
+            }}
+          >
+            {/* Skip Button stays at top */}
+            <div style={{ textAlign: "right" }}>
+              <button onClick={() => setScreen("phone")} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>
+                Skip
+              </button>
+            </div>
+
+            {/* Content Area - flex: 1 pushes the button down */}
             <motion.div variants={childVariants} style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center" }}>
               <GlassStack angle={slide.angle} />
-              <h2 style={{ fontSize: 28, fontWeight: 800, marginTop: 40 }}>{slide.title}<br/><span style={{ color: COLORS.aqua }}>{slide.hi}</span></h2>
+              <h2 style={{ fontSize: 28, fontWeight: 800, marginTop: 40 }}>
+                {slide.title}<br/>
+                <span style={{ color: COLORS.aqua }}>{slide.hi}</span>
+              </h2>
               <p style={{ opacity: 0.4, marginTop: 15, lineHeight: 1.5 }}>{slide.sub}</p>
             </motion.div>
-            <motion.div variants={childVariants}>
-               <button onClick={() => handleNextSlide(i)} style={{ width: "100%", padding: 20, borderRadius: 20, background: COLORS.glass, border: `1px solid ${COLORS.glassBorder}`, color: "#fff", fontSize: 18, fontWeight: 700 }}>Next →</button>
+
+            {/* Button Wrapper - marginTop: "auto" pushes it to bottom without overlap */}
+            <motion.div 
+              variants={childVariants} 
+              style={{ 
+                display: "flex", 
+                justifyContent: "center", 
+                padding: "20px 0 40px",
+                marginTop: "auto" 
+              }}
+            >
+              <motion.button 
+                onClick={() => handleNextSlide(i)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{ 
+                  boxShadow: [
+                    "0 4px 15px rgba(255, 255, 255, 0.05)",
+                    "0 4px 25px rgba(255, 255, 255, 0.15)",
+                    "0 4px 15px rgba(255, 255, 255, 0.05)"
+                  ]
+                }}
+                transition={{ boxShadow: { repeat: Infinity, duration: 2 } }}
+                style={{
+                  width: "140px",
+                  padding: "12px", 
+                  borderRadius: 99,
+                  background: "rgba(255, 255, 255, 0.1)", 
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  color: "#fff", 
+                  fontSize: 15, 
+                  fontWeight: 700, 
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                Next
+              </motion.button>
             </motion.div>
           </motion.div>
         ))}

@@ -5,7 +5,6 @@ import TrustScore from '../components/TrustScore'
 import useWeatherData from '../hooks/useWeatherData'
 import { calculateDCS, calculateWBGT } from '../utils/dcsCalculator'
 
-// ─── Dashboard ───────────────────────────────────────────────────────────────
 export default function Dashboard({ worker, onPayout }) {
   const { weather, loading, isReplay, loadReplay } = useWeatherData()
   const [dcs, setDcs]               = useState({ score: 0, zone: 'clear', label: 'Zone Clear' })
@@ -83,9 +82,13 @@ export default function Dashboard({ worker, onPayout }) {
         {/* ── Hero Header ── */}
         <div style={{
           background: 'linear-gradient(135deg, #185FA5 0%, #1271C4 100%)',
-          padding: '44px 24px 56px',
+          padding: '44px 24px 70px',
           position: 'relative',
           overflow: 'hidden',
+          borderBottomLeftRadius: '32px',
+          borderBottomRightRadius: '32px',
+          boxShadow: '0 10px 25px rgba(24, 95, 165, 0.15)',
+          zIndex: 1
         }}>
           <div style={{
             position: 'absolute', top: -40, right: -40,
@@ -148,23 +151,25 @@ export default function Dashboard({ worker, onPayout }) {
           </div>
         </div>
 
-        {/* ── Cards ── */}
+        {/* ── Cards Container ── */}
         <div style={{
           maxWidth: 390, margin: '0 auto',
           padding: '0 16px',
-          marginTop: -24,
+          marginTop: -35,
           display: 'flex', flexDirection: 'column', gap: 14,
+          position: 'relative',
+          zIndex: 2
         }}>
 
           {/* Pre-Credit Card */}
           {showPreCredit && (
             <div className="dash-card" style={{
               background: 'white',
-              borderRadius: 16,
+              borderRadius: 20,
               padding: '16px 18px',
               border: '1px solid #E2E8F0',
               borderLeft: '4px solid #BA7517',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
               animation: 'pulse-glow 2.5s ease-in-out infinite, fadeUp 0.4s ease-out both',
               position: 'relative',
             }}>
@@ -220,10 +225,10 @@ export default function Dashboard({ worker, onPayout }) {
           {/* DCS Gauge */}
           <div className="dash-card" style={{
             background: 'white',
-            borderRadius: 16,
+            borderRadius: 20,
             padding: '20px 20px 16px',
             border: '1px solid #E2E8F0',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
             animationDelay: '0.05s',
           }}>
@@ -242,10 +247,10 @@ export default function Dashboard({ worker, onPayout }) {
           {/* AI Risk Engine */}
           <div className="dash-card" style={{
             background: 'white',
-            borderRadius: 16,
+            borderRadius: 20,
             padding: 16,
             border: '1px solid #E2E8F0',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
             animationDelay: '0.1s',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
@@ -286,10 +291,10 @@ export default function Dashboard({ worker, onPayout }) {
           {/* Coverage Summary */}
           <div className="dash-card" style={{
             background: 'white',
-            borderRadius: 16,
+            borderRadius: 20,
             padding: 16,
             border: '1px solid #E2E8F0',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
             animationDelay: '0.2s',
           }}>
             <p style={{
@@ -346,7 +351,7 @@ export default function Dashboard({ worker, onPayout }) {
                 background: simulating ? '#F8F9FB' : 'white',
                 color: simulating ? '#94A3B8' : '#185FA5',
                 border: `1.5px solid ${simulating ? '#E2E8F0' : '#185FA5'}`,
-                borderRadius: 12,
+                borderRadius: 16,
                 fontSize: 13, fontWeight: 600,
                 cursor: simulating ? 'not-allowed' : 'pointer',
                 transition: 'all 200ms',

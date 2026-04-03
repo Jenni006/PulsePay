@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 export default function Alerts({ preCredit }) {
   const pc = preCredit || { active: true, amount: 180, probability: 74, forecastWindow: "5–8pm", status: "pre_credited" };
 
-  // ✅ ADDED: Live AQI + timestamp
+  // ADDED: Live AQI + timestamp
   const [liveAQI, setLiveAQI] = useState(null)
   const [lastUpdated, setLastUpdated] = useState("just now")
 
@@ -22,7 +22,6 @@ export default function Alerts({ preCredit }) {
     return () => clearInterval(iv)
   }, [])
 
-  // ✅ UPDATED: triggers (only AQI made dynamic)
   const triggers = [
     { name: "Rainfall",       value: "2.1 mm/hr",  source: "Open-Meteo",  ok: true  },
     { name: "Heat Stress",    value: "WBGT 28°C",  source: "Open-Meteo",  ok: true  },
@@ -32,53 +31,103 @@ export default function Alerts({ preCredit }) {
       source: "OpenAQ Live",      
       ok: (liveAQI ?? 75) < 100 
     },
-    { name: "Order Velocity", value: "Mock: Normal",source: "Platform SDK",ok: true  },
+    { name: "Order Velocity", value: "Normal",source: "Platform SDK",ok: true  },
     { name: "Civic Alerts",   value: "0 active",   source: "TOI RSS",     ok: true  },
   ];
 
   return (
-    <div style={{ padding: "16px", paddingBottom: 80 }}>
-
-      {/* Pre-Credit Card — THE differentiator */}
-      {pc.active && (
-        <div style={{
-          background: pc.status === "confirmed" ? "#E1F5EE" : pc.status === "reversed" ? "#FCEBEB" : "#EFF6FF",
-          border: `1px solid ${pc.status === "confirmed" ? "#1D9E75" : pc.status === "reversed" ? "#E24B4A" : "#185FA5"}`,
-          borderRadius: 16, padding: 16, marginBottom: 16,
-        }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: "#185FA5", marginBottom: 4 }}>
-            PRE-CREDIT ACTIVE
-          </div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#0F172A" }}>₹{pc.amount} pre-credited</div>
-          <div style={{ fontSize: 13, color: "#64748B", margin: "4px 0 10px" }}>
-            {pc.probability}% rain probability · Tomorrow {pc.forecastWindow}
-          </div>
-          <StatusLine status={pc.status} />
+    <>
+      {/* Header */}
+      <div 
+        style={{ 
+          background: "#185FA5", 
+          padding: "44px 20px 40px", 
+          marginBottom: 0,
+          borderBottomLeftRadius: "30px", 
+          borderBottomRightRadius: "30px",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
+          position: "relative",
+          zIndex: 10
+        }}
+      >
+        <div style={{ fontSize: 22, fontWeight: 800, color: "#fff" }}>Alerts</div>
+        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: 4 }}>
+          Real-time risk signals & triggers
         </div>
-      )}
-
-      {/* Live Triggers */}
-      <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 10 }}>Live Trigger Status</div>
-      {triggers.map(t => (
-        <div key={t.name} style={{ background: "#fff", border: "1px solid #E2E8F0", borderRadius: 12, padding: 12, marginBottom: 8, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 500 }}>{t.name}</div>
-            <div style={{ fontSize: 11, color: "#64748B" }}>{t.source}</div>
-          </div>
-          <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 13, fontWeight: 600 }}>{t.value}</div>
-            <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 20, background: t.ok ? "#E1F5EE" : "#FAEEDA", color: t.ok ? "#0F6E56" : "#854F0B" }}>
-              {t.ok ? "Normal" : "Elevated"}
-            </span>
-          </div>
-        </div>
-      ))}
-
-      {/* ✅ UPDATED timestamp */}
-      <div style={{ fontSize: 11, color: "#94A3B8", textAlign: "center", marginTop: 8 }}>
-        Last updated {lastUpdated} · Polling every 5 min
       </div>
-    </div>
+
+      {/* Content */}
+      <div style={{ padding: "16px", paddingBottom: 80, marginTop: -12 }}>
+
+        {/* Pre-Credit Card */}
+        {pc.active && (
+          <div style={{
+            background: pc.status === "confirmed" ? "#E1F5EE" : pc.status === "reversed" ? "#FCEBEB" : "#EFF6FF",
+            border: `1px solid ${pc.status === "confirmed" ? "#1D9E75" : pc.status === "reversed" ? "#E24B4A" : "#185FA5"}`,
+            borderRadius: 16,
+            padding: 16,
+            marginBottom: 16,
+          }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "#185FA5", marginBottom: 4 }}>
+              PRE-CREDIT ACTIVE
+            </div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: "#0F172A" }}>
+              ₹{pc.amount} pre-credited
+            </div>
+            <div style={{ fontSize: 13, color: "#64748B", margin: "4px 0 10px" }}>
+              {pc.probability}% rain probability · Tomorrow {pc.forecastWindow}
+            </div>
+            <StatusLine status={pc.status} />
+          </div>
+        )}
+
+        {/* Live Triggers */}
+        <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 10 }}>
+          Live Trigger Status
+        </div>
+
+        {triggers.map(t => (
+          <div
+            key={t.name}
+            style={{
+              background: "#fff",
+              border: "1px solid #E2E8F0",
+              borderRadius: 12,
+              padding: 12,
+              marginBottom: 8,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 500 }}>{t.name}</div>
+              <div style={{ fontSize: 11, color: "#64748B" }}>{t.source}</div>
+            </div>
+
+            <div style={{ textAlign: "right" }}>
+              <div style={{ fontSize: 13, fontWeight: 600 }}>{t.value}</div>
+              <span
+                style={{
+                  fontSize: 10,
+                  padding: "2px 8px",
+                  borderRadius: 20,
+                  background: t.ok ? "#E1F5EE" : "#FAEEDA",
+                  color: t.ok ? "#0F6E56" : "#854F0B",
+                }}
+              >
+                {t.ok ? "Normal" : "Elevated"}
+              </span>
+            </div>
+          </div>
+        ))}
+
+        {/* Timestamp */}
+        <div style={{ fontSize: 11, color: "#94A3B8", textAlign: "center", marginTop: 8 }}>
+          Last updated {lastUpdated} · Polling every 5 min
+        </div>
+      </div>
+    </>
   );
 }
 
