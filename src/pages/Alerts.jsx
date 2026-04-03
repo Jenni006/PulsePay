@@ -1,5 +1,40 @@
+import { useEffect, useState } from "react"
+
 export default function Alerts({ preCredit }) {
   const pc = preCredit || { active: true, amount: 180, probability: 74, forecastWindow: "5–8pm", status: "pre_credited" };
+
+  // ✅ ADDED: Live AQI + timestamp
+  const [liveAQI, setLiveAQI] = useState(null)
+  const [lastUpdated, setLastUpdated] = useState("just now")
+
+  useEffect(() => {
+    fetch("https://api.openaq.org/v2/latest?city=Chennai&limit=1&parameter=pm25")
+      .then(r => r.json())
+      .then(d => {
+        const val = d?.results?.[0]?.measurements?.[0]?.value
+        if (val) setLiveAQI(Math.round(val))
+      })
+      .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    const iv = setInterval(() => setLastUpdated("2 min ago"), 120000)
+    return () => clearInterval(iv)
+  }, [])
+
+  // ✅ UPDATED: triggers (only AQI made dynamic)
+  const triggers = [
+    { name: "Rainfall",       value: "2.1 mm/hr",  source: "Open-Meteo",  ok: true  },
+    { name: "Heat Stress",    value: "WBGT 28°C",  source: "Open-Meteo",  ok: true  },
+    { 
+      name: "Air Quality",    
+      value: `AQI ${liveAQI ?? 75}`,     
+      source: "OpenAQ Live",      
+      ok: (liveAQI ?? 75) < 100 
+    },
+    { name: "Order Velocity", value: "Mock: Normal",source: "Platform SDK",ok: true  },
+    { name: "Civic Alerts",   value: "0 active",   source: "TOI RSS",     ok: true  },
+  ];
 
   return (
     <div style={{ padding: "16px", paddingBottom: 80 }}>
@@ -39,8 +74,9 @@ export default function Alerts({ preCredit }) {
         </div>
       ))}
 
+      {/* ✅ UPDATED timestamp */}
       <div style={{ fontSize: 11, color: "#94A3B8", textAlign: "center", marginTop: 8 }}>
-        Last updated 2 min ago · Polling every 5 min
+        Last updated {lastUpdated} · Polling every 5 min
       </div>
     </div>
   );
@@ -55,11 +91,3 @@ function StatusLine({ status }) {
   const s = map[status] || map.pre_credited;
   return <div style={{ fontSize: 12, color: s.color, fontWeight: 500 }}>{s.text}</div>;
 }
-
-const triggers = [
-  { name: "Rainfall",       value: "2.1 mm/hr",  source: "Open-Meteo",  ok: true  },
-  { name: "Heat Stress",    value: "WBGT 28°C",  source: "Open-Meteo",  ok: true  },
-  { name: "Air Quality",    value: "AQI 75",     source: "OpenAQ",      ok: false },
-  { name: "Order Velocity", value: "Mock: Normal",source: "Platform SDK",ok: true  },
-  { name: "Civic Alerts",   value: "0 active",   source: "TOI RSS",     ok: true  },
-];

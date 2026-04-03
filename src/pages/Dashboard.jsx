@@ -1,110 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Home, Shield, BarChart2, Bell } from 'lucide-react'
 import DCSGauge from '../components/DCSGauge'
 import TriggerPill from '../components/TriggerPill'
 import TrustScore from '../components/TrustScore'
 import useWeatherData from '../hooks/useWeatherData'
 import { calculateDCS, calculateWBGT } from '../utils/dcsCalculator'
-
-// ─── Bottom Nav ─────────────────────────────────────────────────────────────
-function BottomNav() {
-  const [active, setActive] = useState('home')
-
-  const tabs = [
-    { id: 'home',      icon: Home,      label: 'Home'      },
-    { id: 'policy',    icon: Shield,    label: 'Policy'    },
-    { id: 'analytics', icon: BarChart2, label: 'Analytics' },
-    { id: 'alerts',    icon: Bell,      label: 'Alerts',   dot: true },
-  ]
-
-  return (
-    <>
-      <style>{`
-        @keyframes tab-pop {
-          0%   { transform: translateY(0); }
-          40%  { transform: translateY(-4px); }
-          100% { transform: translateY(0); }
-        }
-        .tab-btn:active { animation: tab-pop 0.25s ease-out; }
-      `}</style>
-
-      <div style={{ height: 72 }} />
-
-      <div style={{
-        position: 'fixed',
-        bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
-        maxWidth: 390,
-        background: 'white',
-        borderTop: '1px solid #E2E8F0',
-        display: 'flex',
-        zIndex: 100,
-        paddingBottom: 'env(safe-area-inset-bottom)',
-      }}>
-        {tabs.map((tab) => {
-          const Icon = tab.icon
-          const isActive = active === tab.id
-          return (
-            <button
-              key={tab.id}
-              className="tab-btn"
-              onClick={() => setActive(tab.id)}
-              style={{
-                flex: 1,
-                padding: '10px 0 8px',
-                border: 'none',
-                background: 'transparent',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 4,
-                cursor: 'pointer',
-              }}
-            >
-              <div style={{ position: 'relative' }}>
-                <Icon
-                  size={20}
-                  style={{
-                    color: isActive ? '#185FA5' : '#94A3B8',
-                    transition: 'color 200ms ease',
-                    strokeWidth: isActive ? 2.5 : 1.8,
-                  }}
-                />
-                {tab.dot && (
-                  <div style={{
-                    position: 'absolute',
-                    top: -2, right: -2,
-                    width: 7, height: 7,
-                    borderRadius: '50%',
-                    background: '#BA7517',
-                    border: '1.5px solid white',
-                  }} />
-                )}
-              </div>
-              <span style={{
-                fontSize: 10,
-                fontWeight: isActive ? 700 : 500,
-                color: isActive ? '#185FA5' : '#94A3B8',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                transition: 'all 200ms ease',
-              }}>{tab.label}</span>
-              {isActive && (
-                <div style={{
-                  width: 4, height: 4,
-                  borderRadius: '50%',
-                  background: '#185FA5',
-                  marginTop: -2,
-                }} />
-              )}
-            </button>
-          )
-        })}
-      </div>
-    </>
-  )
-}
 
 // ─── Dashboard ───────────────────────────────────────────────────────────────
 export default function Dashboard({ worker, onPayout }) {
@@ -131,9 +30,9 @@ export default function Dashboard({ worker, onPayout }) {
   const hour = new Date().getHours()
   const greeting = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening'
   const workerName = worker?.name || 'Raj'
-  const premium    = worker?.zoneData?.premium || 22
-  const cap        = worker?.zoneData?.cap || 1000
-  const zone       = worker?.zoneData?.label || 'Vadapalani — Zone C'
+  const premium = worker?.premium || 22
+  const cap     = worker?.coverage || 1000
+  const zone    = worker?.zone || 'Vadapalani — Zone C'
 
   if (loading) {
     return (
@@ -465,9 +364,6 @@ export default function Dashboard({ worker, onPayout }) {
           </div>
 
         </div>
-
-        {/* Bottom Nav */}
-        <BottomNav />
 
       </div>
     </>

@@ -194,42 +194,6 @@ export default function Payout({ worker, onBack }) {
             </div>
           )}
 
-          {/* Pre-credit breakdown */}
-          {logStep >= logEntries.length && (
-            <div style={{
-              background: 'white', borderRadius: 16,
-              padding: 16, border: '1px solid #E2E8F0',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
-              animation: 'fadeUp 0.4s ease-out both',
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-            }}>
-              <p style={{
-                fontSize: 11, fontWeight: 700, color: '#94A3B8',
-                textTransform: 'uppercase', letterSpacing: '0.08em',
-                margin: '0 0 12px',
-              }}>Payout Breakdown</p>
-              {[
-                { label: 'Pre-credit converted', amount: '₹180', color: '#1D9E75' },
-                { label: 'Additional payout',    amount: '₹44',  color: '#1D9E75' },
-              ].map((row, i) => (
-                <div key={i} style={{
-                  display: 'flex', justifyContent: 'space-between',
-                  marginBottom: 10, fontSize: 13,
-                }}>
-                  <span style={{ color: '#64748B' }}>{row.label}</span>
-                  <span style={{ color: row.color, fontWeight: 700 }}>{row.amount} ✓</span>
-                </div>
-              ))}
-              <div style={{
-                borderTop: '1px solid #F1F5F9', paddingTop: 10,
-                display: 'flex', justifyContent: 'space-between',
-              }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#0F172A' }}>Total disbursed</span>
-                <span style={{ fontSize: 14, fontWeight: 800, color: '#185FA5' }}>₹224</span>
-              </div>
-            </div>
-          )}
-
           {/* Event summary */}
           <div style={{
             background: 'linear-gradient(135deg, #185FA5, #1271C4)',
@@ -325,15 +289,6 @@ export default function Payout({ worker, onBack }) {
               </p>
             </div>
           )}
-
-          {/* Disclaimer */}
-          <p style={{
-            fontSize: 11, color: '#CBD5E1',
-            textAlign: 'center', lineHeight: 1.6, padding: '0 8px',
-          }}>
-            Payout = 80% of estimated loss · ₹420 baseline − ₹140 earned = ₹280 × 0.80
-            · Verified Open-Meteo archive · Vadapalani, Chennai
-          </p>
 
           {/* Back button */}
           <button

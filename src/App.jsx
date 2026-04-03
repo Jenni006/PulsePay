@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react"
 
 import BottomNav from "./components/BottomNav"
+import Registration from "./pages/Registration"
 import Onboarding from "./pages/Onboarding"
 import Dashboard from "./pages/Dashboard"
 import Policy from "./pages/Policy"
@@ -9,15 +10,16 @@ import Alerts from "./pages/Alerts"
 import Payout from "./pages/Payout"
 
 export default function App() {
-  const [screen, setScreen] = useState("onboarding")
+  const [screen, setScreen] = useState("register")
   const [workerData, setWorkerData] = useState(null)
   const [direction, setDirection] = useState("forward")
   const [tab, setTab] = useState("home")
 
-  // Navigation handlers (memoized for performance)
+  // ─── Navigation Handlers ───────────────────────────────
   const goToDashboard = useCallback((data) => {
     setDirection("forward")
     setWorkerData(data)
+    setTab("home") // reset tab
     setScreen("dashboard")
   }, [])
 
@@ -28,11 +30,14 @@ export default function App() {
 
   const goBack = useCallback(() => {
     setDirection("back")
+    setTab("home") // reset tab when returning
     setScreen("dashboard")
   }, [])
 
-  // Tab renderer (clean & scalable)
+  // ─── Tab Renderer ─────────────────────────────────────
   const renderTab = () => {
+    if (!workerData) return null
+
     switch (tab) {
       case "home":
         return (
@@ -52,16 +57,30 @@ export default function App() {
     }
   }
 
-  // Screen renderer (main navigation)
+  // ─── Screen Renderer ──────────────────────────────────
   const renderScreen = () => {
     switch (screen) {
+      case "register":
+        return (
+          <Registration
+            onComplete={(data) => {
+              setWorkerData(data)
+              setDirection("forward")
+              setTab("home")
+              setScreen("dashboard") // skipping onboarding (premium flow)
+            }}
+          />
+        )
+
       case "onboarding":
         return <Onboarding onNext={goToDashboard} />
 
       case "dashboard":
         return (
           <>
-            {renderTab()}
+            <div style={{ paddingBottom: 80 }}>
+              {renderTab()}
+            </div>
             <BottomNav active={tab} onChange={setTab} />
           </>
         )
@@ -79,6 +98,7 @@ export default function App() {
     }
   }
 
+  // ─── App Layout ───────────────────────────────────────
   return (
     <>
       {/* Global Styles */}
