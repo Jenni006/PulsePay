@@ -96,7 +96,7 @@ export default function TriggerPill({ rainfall, orderDrop, wbgt, aqi }) {
             color: '#94A3B8', margin: 0,
             textTransform: 'uppercase', letterSpacing: '0.08em',
             fontFamily: "'Plus Jakarta Sans', sans-serif",
-          }}>⚡ Live Triggers</p>
+          }}>Live Triggers</p>
           <p style={{ fontSize: 11, color: '#CBD5E1', margin: 0 }}>
             Updated 3 min ago
           </p>

@@ -303,7 +303,7 @@ export default function Payout({ worker, onBack }) {
               fontFamily: "'Plus Jakarta Sans', sans-serif",
             }}
           >
-            ← Back to Dashboard
+            Back to Dashboard
           </button>
 
         </div>
