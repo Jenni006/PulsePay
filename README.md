@@ -230,6 +230,7 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [x] DCS calculation engine (5-minute polling loop)
 - [x] Automated claim pipeline — detect → estimate → validate → pay
 - [x] Worker dashboard with live DCS gauge and Trust Score
+- [x] Pre-credit morning forecast system
 
 **Phase 3 — April 5–17 (Scale & Optimise)**
 - [ ] FraudGuard ML pipeline (Isolation Forest + XGBoost)
@@ -240,7 +241,6 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [ ] Guidewire ClaimCenter — parametric claim lifecycle integration
 - [ ] Guidewire BillingCenter — payout processing integration
 - [ ] Insurer analytics dashboard — live risk heatmap + predictive panel
-- [ ] Pre-credit morning forecast system
 
 ---
 
