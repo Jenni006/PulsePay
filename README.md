@@ -170,16 +170,20 @@ Three systems. All implemented as rule-based mock models for the prototype, docu
 
 Every morning at 7am, PulsePay runs a 12-hour forecast for each zone using IMD extended forecasts and historical disruption patterns. If disruption probability exceeds 70% during a worker's active window, PulsePay pre-credits the estimated income buffer to their wallet before the disruption starts. If it doesn't materialise, the credit is silently reversed. The worker never experiences a financial gap — the disruption becomes financially invisible.
 
-**Trust Score — rewarding honesty, not just punishing fraud**
+**Proof of Recovery — a new financial primitive**
 
-Every team will build fraud detection that flags and penalises workers. We flipped this. PulsePay gives every worker a Trust Score (0–100) that increases every fraud-free week. Higher score = faster payouts, higher coverage limit, lower premium. Workers who have always been excluded by financial institutions see their reliability being recognised and rewarded. The fraud detection runs identically underneath — we just changed what the worker sees.
+Every payout is proof. Proof that this worker showed up, 
+got disrupted, and came back. PulsePay introduces Proof of 
+Recovery — verified evidence of a worker's ability to bounce 
+back from income loss.
 
-| Trust Score | Benefit |
-|---|---|
-| 50 (new) | Standard 4-min payout, ₹700 coverage |
-| 65 | 2-min payout, ₹900 coverage |
-| 80 | 90-sec payout, ₹1,100 coverage, 8% premium discount |
-| 95+ | Pre-credit eligible, ₹1,400 coverage, 15% discount |
+India has credit scores for repayment. We built the first 
+verified resilience record for workers formal finance has 
+never seen.
+
+Workers with High Recovery badge unlock disruption liquidity 
+— not a loan, money available only when income stops, 
+auto-repaid from next week's platform earnings.
 
 **Income Infrastructure, Not Just Insurance** — After 24 months PulsePay holds the most granular verified income dataset for informal workers in India. This enables gig worker credit scoring (NBFC partnerships), platform risk intelligence (sold to Blinkit/Zepto for supply planning), and reinsurance data products. PulsePay starts as income protection. It becomes the financial identity layer for India's gig workforce.
 
@@ -232,15 +236,14 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [x] Worker dashboard with live DCS gauge and Trust Score
 - [x] Pre-credit morning forecast system
 
-**Phase 3 — April 5–17 (Scale & Optimise)**
-- [ ] FraudGuard ML pipeline (Isolation Forest + XGBoost)
-- [ ] IncomeLens personalised loss estimation
-- [ ] Razorpay test mode UPI batch payouts
-- [ ] Guidewire Autopilot — mock integration for demo, production integration pending enterprise access
-- [ ] Guidewire PolicyCenter — policy creation integration
-- [ ] Guidewire ClaimCenter — parametric claim lifecycle integration
-- [ ] Guidewire BillingCenter — payout processing integration
-- [ ] Insurer analytics dashboard — live risk heatmap + predictive panel
+### Phase 3 — April 5–17 (Scale & Optimise)
+
+- [ ] Proof of Recovery — disruption liquidity product (NBFC partnership model)
+- [ ] FraudGuard — GPS spoofing detection (Isolation Forest + XGBoost)
+- [ ] Razorpay test mode — real UPI simulation
+- [ ] Guidewire Autopilot — full mock integration for demo
+- [ ] Insurer analytics dashboard
+- [ ] 5-minute demo video + pitch deck
 
 ---
 
