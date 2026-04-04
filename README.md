@@ -228,13 +228,13 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [ ] Registration + Aadhaar eKYC flow (UIDAI sandbox)
 - [ ] 5 triggers wired to Open-Meteo, OpenAQ, RSS feeds
 - [ ] DCS calculation engine (5-minute polling loop)
-- [ ] IncomeLens personalised loss estimation
 - [ ] Automated claim pipeline — detect → estimate → validate → pay
-- [ ] Razorpay test mode UPI batch payouts
 - [ ] Worker dashboard with live DCS gauge and Trust Score
 
 **Phase 3 — April 5–17 (Scale & Optimise)**
 - [ ] FraudGuard ML pipeline (Isolation Forest + XGBoost)
+- [ ] IncomeLens personalised loss estimation
+- [ ] Razorpay test mode UPI batch payouts
 - [ ] Guidewire Autopilot — mock integration for demo, production integration pending enterprise access
 - [ ] Guidewire PolicyCenter — policy creation integration
 - [ ] Guidewire ClaimCenter — parametric claim lifecycle integration
