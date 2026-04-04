@@ -1,4 +1,4 @@
-# PulsePay 🛡️
+# PulsePay 
 ### Parametric Income Protection for Chennai's Quick Commerce Delivery Workers
 
 > *"PulsePay doesn't wait for a claim. It pays before you've stopped riding."*
