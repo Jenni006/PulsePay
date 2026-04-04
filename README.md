@@ -225,11 +225,11 @@ Hosting:    Vercel (frontend), Railway.app (backend + DB), Render.com (ML) — a
 - [x] DynamicPricer premium calculator 
 
 **Phase 2 — March 21–April 4 (Automation & Protection)**
-- [ ] Registration + Aadhaar eKYC flow (UIDAI sandbox)
-- [ ] 5 triggers wired to Open-Meteo, OpenAQ, RSS feeds
-- [ ] DCS calculation engine (5-minute polling loop)
-- [ ] Automated claim pipeline — detect → estimate → validate → pay
-- [ ] Worker dashboard with live DCS gauge and Trust Score
+- [x] Registration + Aadhaar eKYC flow (UIDAI sandbox)
+- [x] 5 triggers wired to Open-Meteo, OpenAQ, RSS feeds
+- [x] DCS calculation engine (5-minute polling loop)
+- [x] Automated claim pipeline — detect → estimate → validate → pay
+- [x] Worker dashboard with live DCS gauge and Trust Score
 
 **Phase 3 — April 5–17 (Scale & Optimise)**
 - [ ] FraudGuard ML pipeline (Isolation Forest + XGBoost)
