@@ -166,29 +166,39 @@ Three systems. All implemented as rule-based mock models for the prototype, docu
 
 ## 8. Three Things That Make Us Different
 
-**Predictive Pre-Credit — not just reactive payout**
+---
 
-Every morning at 7am, PulsePay runs a 12-hour forecast for each zone using IMD extended forecasts and historical disruption patterns. If disruption probability exceeds 70% during a worker's active window, PulsePay pre-credits the estimated income buffer to their wallet before the disruption starts. If it doesn't materialise, the credit is silently reversed. The worker never experiences a financial gap — the disruption becomes financially invisible.
+### Predictive Pre-Credit — we pay before the storm
 
-**Proof of Recovery — a new financial primitive**
+> *Every other team waits for disruption. We see it coming.*
 
-Every payout is proof. Proof that this worker showed up, 
-got disrupted, and came back. PulsePay introduces Proof of 
-Recovery — verified evidence of a worker's ability to bounce 
-back from income loss.
+If rain probability exceeds 70% during a worker's active window — ₹180 is pre-credited before disruption starts. If it doesn't hit, the credit silently reverses. If it does, it converts to confirmed payout.
 
-India has credit scores for repayment. We built the first 
-verified resilience record for workers formal finance has 
-never seen.
+**The disruption becomes financially invisible.**
 
-Workers with High Recovery badge unlock disruption liquidity 
-— not a loan, money available only when income stops, 
-auto-repaid from next week's platform earnings.
+---
 
-**Income Infrastructure, Not Just Insurance** — After 24 months PulsePay holds the most granular verified income dataset for informal workers in India. This enables gig worker credit scoring (NBFC partnerships), platform risk intelligence (sold to Blinkit/Zepto for supply planning), and reinsurance data products. PulsePay starts as income protection. It becomes the financial identity layer for India's gig workforce.
+### Proof of Recovery — a new financial primitive
 
-**Built on Guidewire** — PulsePay is designed as a parametric module that sits on top of Guidewire's PolicyCenter — not a replacement, but an extension that brings real-time environmental triggers into existing insurer workflows.
+> *Every other team built insurance that pays after loss. We realised the payout is not the product. It is proof.*
 
+Proof that this worker showed up, got disrupted, and came back.
+
+India has credit scores for repayment. PulsePay introduces the first verified resilience record for workers formal finance has never seen. Workers with a **High Recovery badge** unlock disruption liquidity — not a loan, money available only when income stops, auto-repaid from next week's platform earnings.
+
+---
+
+### Income Infrastructure — not just insurance
+
+After 24 months, PulsePay holds the most granular verified income dataset for informal workers in India — enabling gig worker credit scoring, platform risk intelligence, and reinsurance data products.
+
+The insurance premium pays for acquisition. **The data asset is the real business.**
+
+---
+
+### Built on Guidewire
+
+A parametric trigger layer on top of Guidewire's PolicyCenter — bringing real-time environmental signals into ClaimCenter and BillingCenter without changing what insurers already know how to do.
 ---
 
 ## 9. Platform Choice
